@@ -14,10 +14,9 @@ jobs:
          os: [ubuntu-18.04]
 
     steps:
-    - name: Install docker and prerequisites
+    - name: Install prerequisites
       run: |
         sudo apt update
-        sudo apt upgrade -y
         sudo apt install -y mtools liblzma-dev binutils
          run: |
          sudo apt-get update
@@ -25,7 +24,12 @@ jobs:
          uname -a
          
     - uses: actions/checkout@v2
-    - name: Compile EFI x86_64
-      run: make bin-x86_64-efi/ipxe.efi
+    - name: Compile EFI x86_64 up to blib
+      run: make bin-x86_64-efi/blib.a
       working-directory: ./src
+    - name: Compile EFI x86_64 with --trace
+      run: make --trace bin-x86_64-efi/ipxe.efi
+      working-directory: ./src
+
+      
 
