@@ -14,6 +14,10 @@ jobs:
          os: [ubuntu-18.04]
 
     steps:
+    - name: Install docker and prerequisites
+      run: |
+        sudo apt update
+        sudo apt install -y mtools liblzma-dev binutils
     - uses: actions/checkout@v2
     - name: Compile EFI x86_64
       run: make bin-x86_64-efi/ipxe.efi
