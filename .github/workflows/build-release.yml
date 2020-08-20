@@ -15,4 +15,5 @@ jobs:
     - uses: actions/checkout@v2
     - name: Compile EFI x86_64
       run: make bin-x86_64-efi/ipxe.efi
+      working-directory: ./src
 
