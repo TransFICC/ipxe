@@ -25,8 +25,12 @@ jobs:
          
     - uses: actions/checkout@v2
     - name: Compile EFI x86_64 up to blib
-      run: make bin-x86_64-efi/blib.a
+      run: |
+        make bin-x86_64-efi/blib.a
+        git describe --tags --always --long --abbrev=1 --match "v*"
+        git describe --tags --always --long --abbrev=1 --match "v*" master
       working-directory: ./src
+      
     - name: Compile EFI x86_64 with --trace
       run: make --trace bin-x86_64-efi/ipxe.efi
       working-directory: ./src
