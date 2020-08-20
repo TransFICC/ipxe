@@ -1,0 +1,18 @@
+name: Build Release
+
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: Compile EFI x86_64
+      run: make bin-x86_64-efi/ipxe.efi
+
