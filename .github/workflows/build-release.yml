@@ -17,10 +17,12 @@ jobs:
     - name: Install docker and prerequisites
       run: |
         sudo apt update
+        sudo apt upgrade -y
         sudo apt install -y mtools liblzma-dev binutils
          run: |
          sudo apt-get update
          gcc --version
+         uname -a
          
     - uses: actions/checkout@v2
     - name: Compile EFI x86_64
