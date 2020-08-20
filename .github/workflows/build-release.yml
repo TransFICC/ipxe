@@ -20,21 +20,12 @@ jobs:
         sudo apt install -y mtools liblzma-dev binutils
          run: |
          sudo apt-get update
-         gcc --version
-         uname -a
          
     - uses: actions/checkout@v2
-    - name: Compile EFI x86_64 up to blib
+    - name: Compile EFI x86_64
       run: |
         git fetch --unshallow --tags
-        git tag --list
-        make bin-x86_64-efi/blib.a
-        git describe --tags --always --long --abbrev=1 --match "v*"
-        git describe --tags --always --long --abbrev=1 --match "v*" master
-      working-directory: ./src
-      
-    - name: Compile EFI x86_64 with --trace
-      run: make --trace bin-x86_64-efi/ipxe.efi
+        make --trace bin-x86_64-efi/ipxe.efi
       working-directory: ./src
 
       
